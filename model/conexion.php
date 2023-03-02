@@ -1,20 +1,20 @@
 <?php
-    $contrasena = "";
-    $usuario = "root";
-    $nombre_bd = "crud";
+class conexion
+{
+    public $server = 'localhost';
+    public $user = 'root';
+    public $password = '';
+    public $database = 'chatunet';
+    public $port = 3306;
 
-    try{
-        $bd = new PDO(
-            'mysql:host = localhost;
-            dbname=' . $nombre_bd,
-            $usuario,
-            $contrasena,
-            array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
-
+    public function conectar()
+    {
+        return mysqli_connect(
+            $this->server,
+            $this->user,
+            $this->password,
+            $this->database,
+            $this->port
         );
-    }catch(Exception $e){
-        echo "Problemas con la conexion ". $e->getMessage();
-
     }
-
-?>
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Crud with php, mysql and bootstrap</title>
+    <title>Chat</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md">
                     <header class="py 3">
-                        <h3 class="text-center">Crud with Bootstrap 5</h3>
+                        <h3 class="text-center">Chat</h3>
                     </header>
             </div>
         </div>

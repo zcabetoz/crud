@@ -1,5 +1,5 @@
 <?php
-include "model/conexion.php";
+include "src/crud/repositories/conexion.php";
 session_start();
 if (!isset($_SESSION['usuario']))
     header('location:index.php');
@@ -35,41 +35,7 @@ if (!isset($_SESSION['usuario']))
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-                            <form class="d-flex" action="" method="post">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                                       name="filtro" required>
-                                <button class="btn btn-outline-success" type="submit" name="buscar">Search</button>
-                            </form>
-                            <li class="nav-item mx-5">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-                                   style="color: black">Disabled</a>
-                            </li>
-                            <li class="nav-item dropdown">
-
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"> </i>
-                                    <?php echo $_SESSION['usuario'] ?>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="estado.php?estado=1&usuario=<?php echo $_SESSION['usuario']?>"><i
-                                                    class="bi bi-person-check"></i> Disponible</a></li>
-                                    <li><a class="dropdown-item" href="estado.php?estado=2&usuario=<?php echo $_SESSION['usuario']?>"><i
-                                                    class="bi bi-person-exclamation"></i> Ocupado</a></li>
-                                    <li><a class="dropdown-item" href="estado.php?estado=3&usuario=<?php echo $_SESSION['usuario']?>"><i
-                                                    class="bi bi-person-slash"></i> Ausente</a></li>
-                                    <li><a class="dropdown-item" href="estado.php?estado=4&usuario=<?php echo $_SESSION['usuario']?>"><i
-                                                    class="bi bi-person-x"></i> No conectado</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-left"></i>
-                                            Salir</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-
+                        <?php include 'src/template/chat/estados.php' ?>
                     </div>
                 </div>
             </nav>
@@ -83,7 +49,7 @@ if (!isset($_SESSION['usuario']))
             <div class="card">
                 <div class="card-header text-center">
                     chatear
-                    <a href="" class="float-end"><i class="bi bi-plus-lg"></i></a>
+                    <a href="src/controller/SalaController.php" class="float-end"><i class="bi bi-plus-lg"></i></a>
                 </div>
             </div>
         </div>
@@ -99,4 +65,4 @@ if (!isset($_SESSION['usuario']))
         </div>
     </div>
 </div>
-<?php include 'template/footer.php' ?>
+<?php include 'src/template/footer.php' ?>

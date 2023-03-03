@@ -1,7 +1,11 @@
 <?php
-include "conexion.php";
 
-class crud extends conexion
+namespace repositories;
+
+include "./src/crud/repositories/conexion.php";
+//session_start();
+
+class personaRepository extends conexion
 {
     public function registrar($usuario, $password)
     {
@@ -13,20 +17,22 @@ class crud extends conexion
         return $query->execute();
     }
 
-    public function acceder($usuario, $password)
+    public function acceder($username, $password)
     {
         $conexion = parent::conectar();
         $passwordUsuario = "";
-        $sql = "select * from persona where username = '$usuario'";
+        $sql = "select * from persona where username = '$username'";
         $respuesta = mysqli_query($conexion, $sql);
-        $passwordUsuario = mysqli_fetch_array($respuesta)['password'];
-        if (password_verify($password, $passwordUsuario)) {
-            $_SESSION['usuario'] = $usuario;
+        $usuario = mysqli_fetch_array($respuesta);
+        if (password_verify($password, $usuario['password'])) {
+            $_SESSION['usuario'] = $username;
+            $_SESSION['estado'] = $usuario['estado'];
             return true;
         } else {
             return false;
         }
     }
+
     public function validarUsuario($usuario)
     {
         $conexion = parent::conectar();
@@ -34,9 +40,13 @@ class crud extends conexion
         $query = mysqli_query($conexion, $sql);
         return $query->num_rows > 0;
     }
-    public function actualizarEstado($usuario, $estado){
+
+    public function actualizarEstado($estado)
+    {
+        $usuario = $_SESSION['usuario'];
         $conexion = parent::conectar();
         $sql = "UPDATE persona SET estado = '$estado' WHERE username = '$usuario'";
+        $_SESSION['estado'] = $estado;
         mysqli_query($conexion, $sql);
     }
 }

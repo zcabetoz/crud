@@ -1,4 +1,6 @@
 <?php
+namespace repositories;
+
 class conexion
 {
     public $server = 'localhost';

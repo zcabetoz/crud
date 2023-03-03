@@ -1,9 +1,15 @@
 <?php
-if (!isset($_GET['estado']) || !isset($_GET['usuario'])) {
+
+use repositories\personaRepository;
+
+session_start();
+if (!isset($_GET['estado']) || !isset($_SESSION['usuario'])) {
     header('location:inicio.php');
 }
-include_once 'model/crud.php';
-$agregarEstado = new crud();
-$agregarEstado->actualizarEstado($_GET['estado'], $_GET['usuario']);
+include_once 'src/crud/repositories/PersonaRepository.php';
+
+
+$agregarEstado = new personaRepository();
+$agregarEstado->actualizarEstado($_GET['estado']);
 header('location:inicio.php');
 

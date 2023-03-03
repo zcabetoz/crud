@@ -1,6 +1,14 @@
-<?php include 'template/header.php'; ?>
-<?php include_once 'model/conexion.php'; ?>
+<?php include_once 'src/crud/repositories/conexion.php'; ?>
 
+<!doctype html>
+<html lang="en">
+
+<?php
+$tituloPagina = 'Registro de usuarios';
+include 'src/template/header.php'
+?>
+<body>
+<?php include 'src/template/titulo.php' ?>
     <div class="container-fluid mt-5">
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -51,4 +59,6 @@
             </div>
         </div>
     </div>
-<?php include 'template/footer.php'; ?>
+<?php include 'src/template/footer.php'; ?>
+</body>
+</html>

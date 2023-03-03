@@ -1,13 +1,16 @@
 <?php
+
+use repositories\personaRepository;
+
 if (empty($_POST['username']) || empty($_POST['password'])) {
     header('location:registro.php?mensaje=falta');
     exit();
 }
-include 'model/crud.php';
+include 'src/crud/repositories/PersonaRepository.php';
 $username = $_POST['username'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-$autenticacion = new crud();
+$autenticacion = new personaRepository();
 if (!$autenticacion->validarUsuario($username)) {
     if ($autenticacion->registrar($username, $password)) {
         header('location:index.php?mensaje=registrado');

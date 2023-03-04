@@ -6,13 +6,28 @@ use services\SalaService;
 
 include "../services/SalaService.php";
 
-session_start();
+//session_start();
 if (!isset($_SESSION['usuario'])) {
     header('location:inicio.php');
 }
 
 $salaService = new SalaService;
-if($salaService->crearSala() != 0){
 
+$action = $_GET['action'];
+$idSala = $_GET['idSala'];
+
+switch ($action) {
+    case 'crear_sala':
+        $idSala = $salaService->crearSala();
+        break;
+    case 'enviar_mensaje':
+        $salaService->MensajeSala($idSala, $_SESSION['id'], $_POST['mensaje']);
+        break;
 }
+
+if ($idSala != 0) {
+   header('location:../../inicio.php?idSala=' . $idSala);
+}
+
+
 

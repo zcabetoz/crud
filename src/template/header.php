@@ -1,5 +1,3 @@
-
-
 <head>
     <title>Chat</title>
     <!-- Required meta tags -->
